@@ -1,0 +1,5 @@
+{
+    "host": "http://api.yolo.com",
+    "expire": "60",
+    "methods": ["GET", "HEAD", "OPTIONS"]
+}

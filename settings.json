@@ -1,0 +1,4 @@
+{
+    "host": "https://marketplace.firefox.com",
+    "methods": ["GET", "HEAD", "OPTIONS"]
+}

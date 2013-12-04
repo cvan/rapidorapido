@@ -1,0 +1,21 @@
+{
+    "name": "rapidorapido",
+    "description": "¡An experiment in front-end HTTP(S) proxying+caching! ¡Rapido! ¡Rapido!",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/cvan/rapidorapido.git"
+    },
+    "dependencies": {
+        "commander": ">=1.1.1",
+        "redis": "*",
+        "request": ">=2.27.0"
+    },
+    "engines": {
+        "node": ">=0.10.3",
+        "npm": ">=1.2.17"
+    },
+    "bin": {
+        "rapidorapido": "./app.js"
+    }
+}
