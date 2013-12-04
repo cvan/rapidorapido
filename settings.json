@@ -1,4 +1,5 @@
 {
     "host": "https://marketplace.firefox.com",
-    "methods": ["GET", "HEAD", "OPTIONS"]
+    "methods": ["GET", "HEAD", "OPTIONS"],
+    "refreshAsync": false
 }

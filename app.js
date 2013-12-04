@@ -85,7 +85,7 @@ function output(req, res, data) {
     res.end(data.body);
 }
 
-var port = program.port || 8080;
+var port = program.port || 7000;
 http.createServer(function(req, res) {
     if (settings.methods.indexOf(req.method) === -1) {
         res.writeHead(405);
@@ -126,11 +126,13 @@ http.createServer(function(req, res) {
             console.log('Cache hit:', url_);
             console.log('Fetching URL from cache:', url_);
             output(req, res, data);
-            setTimeout(function() {
-                // Fetch asynchronously to update its cache.
-                console.log('Repopulating cache:', url_);
-                fetch(req, res, url_);
-            }, 0);
+            if (settings.refreshAsync) {
+                setTimeout(function() {
+                    // Fetch asynchronously to update its cache.
+                    console.log('Repopulating cache:', url_);
+                    fetch(req, res, url_);
+                }, 0);
+            }
         }
     });
 }).listen(port, '0.0.0.0');
