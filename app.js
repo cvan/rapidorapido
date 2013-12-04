@@ -2,13 +2,23 @@
 
 var fs = require('fs');
 var http = require('http');
+var urlparse = require('url').parse;
 
 var program = require('commander');
 var redis = require('redis');
 var request = require('request');
 
-var redisClient = redis.createClient();
-
+// Connect to redis.
+var redisURL = urlparse(process.env.REDIS_URL ||
+                        process.env.REDISCLOUD_URL ||
+                        process.env.REDISTOGO_URL ||
+                        '');
+redisURL.hostname = redisURL.hostname || 'localhost';
+redisURL.port = redisURL.port || 6379;
+var redisClient = require('redis').createClient(redisURL.port, redisURL.hostname);
+if (redisURL.auth) {
+    redisClient.auth(redisURL.auth.split(':')[1]);
+}
 
 // Command-line signature.
 program.version('0.0.1')

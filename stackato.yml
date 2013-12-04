@@ -1,0 +1,14 @@
+name: rapidorapido
+framework:
+    type: node
+
+services:
+    ${name}-redis: redis
+
+mem: 256m
+
+hooks:
+    pre-staging:
+        - npm install
+
+ignores: ['node_modules', '.git']
