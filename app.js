@@ -85,7 +85,7 @@ function output(req, res, data) {
     res.end(data.body);
 }
 
-var port = program.port || 7000;
+var port = program.port || process.env.PORT || 7000;
 http.createServer(function(req, res) {
     if (settings.methods.indexOf(req.method) === -1) {
         res.writeHead(405);
