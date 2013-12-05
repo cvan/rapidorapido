@@ -58,7 +58,8 @@
 {
     "host": "http://api.yolo.com",
     "expire": "60",
-    "methods": ["GET", "OPTIONS"]
+    "methods": ["GET", "OPTIONS"],
+    "refreshAsync": "true"
 }
 ```
 
@@ -71,6 +72,10 @@
 <dt><code>methods</code> (optional)</dt>
 <dd>the allowed methods for proxying and caching;
     if omitted, allowed methods will be <code>["GET", "HEAD", "OPTIONS"]</code></dd>
+<dt><code>refreshAsync</code> (optional)</dt>
+<dd>boolean for whether to asynchronously make the request to
+    the host and cache its response even after a cache hit;
+    if omitted, this will default to <code>true</code></dd>
 </dl>
 
 ### Sample usage
@@ -80,4 +85,4 @@ http://localhost:8080/api/v1/search
 
 Upon the first time anyone accesses this URL, the request will be proxied and its response is then cached (in redis) for 60 seconds (the TTL/`expire`).
 
-The responses for any subsequent requests (until 60 seconds has elapsed) will be retrieved from the cache and delievered immediately; asynchronously the cache is refreshed (if the content has changed) with that URL's response set to expire again in 60 seconds.
+The responses for any subsequent requests (until 60 seconds has elapsed) will be retrieved from the cache and delivered immediately; asynchronously the cache is refreshed (if the content has changed) with that URL's response set to expire again in 60 seconds.
